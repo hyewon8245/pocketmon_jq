@@ -8,6 +8,9 @@
 
 이 스크립트는 **포켓몬 API(PokeAPI)** 를 활용하여,
 배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒤모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성하는 기능을 합니다.
+<details>
+<summary>포켓몬 랜덤 HTML 생성 스크립트 보기</summary>
+  
 ```bash
 #!/bin/bash
 
@@ -74,12 +77,15 @@ echo "웹페이지가 $OUTFILE 에 생성되었습니다."
 echo "http://<서버IP>/pocketmon.html 로 접속하세요."
 
 ```
-
+</details>
 
 
 ---
 
 ## 주요 기능 정리
+
+<details>
+<summary>주요 기능 정리</summary>
 
 ### 1. 의존성 체크
 
@@ -138,14 +144,16 @@ EOF
 * 하단에 데이터 출처(PokeAPI) 표기.
 
 ---
+</details>
 
-### 5. 실행 결과
+--- 
+### 실행 결과
 
 * 실행 후 `/var/www/html/pocketmon.html` 파일이 생성됨.
 * 브라우저에서 `http://<서버IP>/pocketmon.html` 접속 시 결과 확인 가능.
 * 실행할 때마다 랜덤 포켓몬이 나오므로, 페이지를 다시 생성하면 새로운 포켓몬 등장.
 
----
+--- 
 
 ## 사용 예시
 
