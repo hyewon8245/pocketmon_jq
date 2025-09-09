@@ -246,14 +246,13 @@ location /pokemon/ {
 	alias /var/www/html/;
 	index pocketmon.html;
 	try_files성
+```
 
-
-
-- **메인 페이지와 연결**
+### **메인 페이지와 연결**
     
-    메인페이지에서 사진 클릭 시 [http://localhost:81/pokemon/](http://localhost:81/pokemon/)로 이동
+    메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pokemon/)로 이동
     
-    메인 페이지 html 코드 [/backiscute.html]
+#### 메인 페이지 html 코드 [/backiscute.html]
     
     ```bash
     <!DOCTYPE html>
@@ -342,11 +341,11 @@ location /pokemon/ {
     </html>
     ```
     
-    ## 메인페이지 엔진엑스에 마운트
+#### 메인페이지 엔진엑스에 마운트
+
+`/etc/nginx/sites-available/default`    
     
-    [/etc/nginx/sites-available/default]
-    
-    ```bash
+	```bash
     location /backiscute/ {
             alias /var/www/html/;
             index backiscute.html;
