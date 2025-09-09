@@ -1,12 +1,8 @@
-# 프로젝트 개요
-- **pocketmon-api**를 활용
-- **jq**를 활용해 json을 파싱하여 **포켓몬 gif**, **이름**확인
-- **nginx**를 활용하여 **웹페이지 제작**
-![전체내용](최종완성.gif)
+# 귀여운 포켓몬의 뒷모습
 
 ---
 
-## 팀원
+## 👥 Team Members
 <table>
   <tr>
     <th>이정이</th>
@@ -26,7 +22,18 @@
 
 ---
 
-## nginx 설치
+## **프로젝트 설명**
+
+- **pocketmon-api**를 활용
+- **jq**를 활용해 json을 파싱하여 **포켓몬 gif**, **이름**확인
+- **nginx**를 활용하여 포켓몬이름과 포켓몬 뒷모습 gif를 볼 **웹페이지 제작**
+![전체내용](최종완성.gif)
+
+---
+
+## **프로젝트 과정**
+
+### nginx 설치
 
 ```bash
 sudo apt update
@@ -34,7 +41,7 @@ sudo apt install nginx
 ```
 ---
 
-## `/pocketmon/pocketmon.sh` 동작 개요
+### `/pocketmon/pocketmon.sh` 동작 개요
 
 **포켓몬 API(PokeAPI)** 를 활용하여,
 배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒤모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성하는 기능
