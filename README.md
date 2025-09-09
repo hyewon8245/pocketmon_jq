@@ -6,6 +6,23 @@
 
 ---
 
+## 팀원
+<table>
+  <tr>
+    <th>이정이</th>
+    <th>홍혜원</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/2jeong2.png" width="120" /><br/>
+      <a href="https://github.com/2jeong2">@이정이</a>
+    </td>
+    <td align="center">
+      <img src="https://github.com/hyewon8245.png" width="120" /><br/>
+      <a href="https://github.com/hyewon8245">@홍혜원</a>
+    </td>
+  </tr>
+</table>
 ```bash
 sudo apt update
 sudo apt install nginx
