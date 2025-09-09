@@ -1,4 +1,4 @@
-# 귀여운 포켓몬의 뒷모습
+# 귀여운 포켓몬의 뒷모습 웹페이지
 
 ---
 
@@ -30,6 +30,16 @@
 ![전체내용](최종완성.gif)
 
 ---
+## 📂 **프로젝트 디렉토리 구조**
+```
+var/
+    www/
+        html/
+            pocketmon.html     # pocketmon.sh 실행 결과물
+            backiscute.html    # 메인페이지
+pocketmon/
+    pocketmon.sh               # 랜덤 포켓몬 뽑아 HTML 생성하는 스크립트
+```
 
 ## **프로젝트 과정**
 
