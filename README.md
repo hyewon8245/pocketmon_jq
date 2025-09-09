@@ -52,16 +52,16 @@ sudo apt install nginx
 ```
 ---
 
-### 🧑‍💻 `/pocketmon/pocketmon.sh` 생성
+#### 🧑‍💻 `/pocketmon/pocketmon.sh` 생성
 **포켓몬 API(PokeAPI)** 를 활용하여,
 배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒷모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성
 
-### pocketmon 디렉토리 생성
+#### pocketmon 디렉토리 생성
 
 ```bash
 mkdir /pocketmon
 ```
-### pocketmon.sh 생성과 실행 권한 설정
+#### pocketmon.sh 생성과 실행 권한 설정
 
 ```bash
 cd pocketmon
@@ -70,19 +70,19 @@ chmod +x pocketmon.sh
 ```
 
 
-### `/pocketmon/pocketmon.sh` 동작 설명
+#### `/pocketmon/pocketmon.sh` 동작 설명
 <details>
 <summary>포켓몬 랜덤 HTML 생성 스크립트 보기</summary>
   
 ```bash
 #!/bin/bash
 
-# 의존성 체크 curl과 jq가 깔려있는지 확인
+#의존성 체크 curl과 jq가 깔려있는지 확인
 for bin in curl jq; do
   command -v "$bin" >/dev/null 2>&1 || { echo "ERROR: $bin not found"; exit 1; }
 done
 
-# 포켓몬 배열(좋아하는 포켓몬 20마리)
+#포켓몬 배열(좋아하는 포켓몬 20마리)
 POKEMONS=("chansey" "meowth" "lucario" "shinx" "pikachu" "magikarp" "gyarados" "turtwig" "oshawott" "farfetchd" "Pichu" "Munchlax" "Pachirisu" "Metapod" "Slowpoke" "Exeggutor" "Dratini" "Mewtwo" "Mew" "Rowlet")
 
 
@@ -145,7 +145,7 @@ echo "http://<서버IP>/pocketmon.html 로 접속하세요."
 <details>
 <summary>주요 기능 정리</summary>
 
-### 1. 의존성 체크
+##### 1. 의존성 체크
 
 ```bash
 for bin in curl jq; do
@@ -158,7 +158,7 @@ done
 
 ---
 
-### 2. 포켓몬 배열 준비
+##### 2. 포켓몬 배열 준비
 
 ```bash
 POKEMONS=("chansey" "meowth" "lucario" ... "Rowlet")
@@ -169,7 +169,7 @@ POKEMONS=("chansey" "meowth" "lucario" ... "Rowlet")
 
 ---
 
-### 3. API 호출
+##### 3. API 호출
 
 ```bash
 URL=$(curl -s https://pokeapi.co/api/v2/pokemon/$POKEMON \
@@ -187,7 +187,7 @@ KOR_NAME=$(curl -s $SPECIES_URL | jq -r '.names[] | select(.language.name=="ko")
 
 ---
 
-### 4. HTML 파일 생성
+##### 4. HTML 파일 생성
 
 ```bash
 OUTFILE="/var/www/html/pocketmon.html"
@@ -206,7 +206,7 @@ EOF
 
 ---
 
-### pocketmon.sh 실행 결과
+#### pocketmon.sh 실행 결과
 
 * 실행 후 `/var/www/html/pocketmon.html` 파일이 생성됨.
 * 브라우저에서 `http://<서버IP>/pocketmon.html` 접속 시 결과 확인 가능.
@@ -214,7 +214,7 @@ EOF
 
 --- 
 
-### pocketmon.sh 실행 예시
+#### pocketmon.sh 실행 예시
 
 ```bash
 cd /pocketmon
@@ -232,11 +232,11 @@ http://<서버IP>/pocketmon.html 로 접속하세요.
 ![포켓몬 뒷모습](파오리_고화질2.gif)
 ---
 
-## Nginx 설정 변경
+### Nginx 설정 변경
 pocketmon.html같이 뜨지 않고 /pocketmon 이라는 웹페이지 경로로 뜨게 하기 위함
 
 
-### Nginx 경로 마운트(alias) 설정
+#### Nginx 경로 마운트(alias) 설정
 
 
 `/etc/nginx/sites-available/default` 파일에 아래 블록을 추가 
