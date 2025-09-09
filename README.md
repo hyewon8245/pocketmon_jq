@@ -52,9 +52,23 @@ sudo apt install nginx
 ```
 ---
 
-## 🧑‍💻 `/pocketmon/pocketmon.sh` 생성
+### 🧑‍💻 `/pocketmon/pocketmon.sh` 생성
 **포켓몬 API(PokeAPI)** 를 활용하여,
 배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒷모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성
+
+### pocketmon 디렉토리 생성
+
+```bash
+mkdir /pocketmon
+```
+### pocketmon.sh 생성과 실행 권한 설정
+
+```bash
+cd pocketmon
+vi pocketmon.sh
+chmod +x pocketmon.sh
+```
+
 
 ### `/pocketmon/pocketmon.sh` 동작 설명
 <details>
@@ -192,7 +206,7 @@ EOF
 
 ---
 
-### 실행 결과
+### pocketmon.sh 실행 결과
 
 * 실행 후 `/var/www/html/pocketmon.html` 파일이 생성됨.
 * 브라우저에서 `http://<서버IP>/pocketmon.html` 접속 시 결과 확인 가능.
@@ -200,7 +214,7 @@ EOF
 
 --- 
 
-### 사용 예시
+### pocketmon.sh 실행 예시
 
 ```bash
 cd /pocketmon
