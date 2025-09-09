@@ -61,7 +61,7 @@ sudo apt install nginx
 ```bash
 mkdir /pocketmon
 ```
-#### pocketmon.sh 생성과 실행 권한 설정
+#### `pocketmon.sh` 생성과 실행 권한 설정
 
 ```bash
 cd pocketmon
@@ -72,7 +72,7 @@ chmod +x pocketmon.sh
 
 #### `/pocketmon/pocketmon.sh` 동작 설명
 <details>
-<summary>포켓몬 랜덤 HTML 생성 스크립트 보기</summary>
+<summary> 🔍 /pocketmon/pocketmon.sh 포켓몬 랜덤 HTML 생성 스크립트 보기</summary>
   
 ```bash
 #!/bin/bash
@@ -143,7 +143,7 @@ echo "http://<서버IP>/pocketmon.html 로 접속하세요."
 </details>
 
 <details>
-<summary>주요 기능 정리</summary>
+<summary>✅주요 체크 포인트</summary>
 
 ##### 1. 의존성 체크
 
@@ -227,9 +227,11 @@ sh pocketmon.sh
 웹페이지가 /var/www/html/pocketmon.html 에 생성되었습니다.
 http://<서버IP>/pocketmon.html 로 접속하세요.
 ```
-브라우저에서 접속 → 랜덤 포켓몬의 한국어 이름과 모습 GIF 확인 가능 🎉
+
+포트포워드 변경 →  브라우저에서 접속 → 랜덤 포켓몬의 한국어 이름과 모습 GIF 확인 가능 🎉
 
 ![포켓몬 뒷모습](파오리_고화질2.gif)
+
 ---
 
 ### Nginx 설정 변경
@@ -247,13 +249,10 @@ location /pokemon/ {
 	index pocketmon.html;
 	try_files성
 ```
-
-### **메인 페이지와 연결**
-    
-    메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pokemon/)로 이동
     
 #### 메인 페이지 html 코드 [/backiscute.html]
-    
+메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pokemon/)로 이동
+
     ```bash
     <!DOCTYPE html>
     <html lang="ko">
