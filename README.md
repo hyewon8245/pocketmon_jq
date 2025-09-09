@@ -353,6 +353,6 @@ location /pokemon/ {
             try_files $uri $uri/ =404;
     }
     ```
-
+![모부기](모부기.gif)
     
 
