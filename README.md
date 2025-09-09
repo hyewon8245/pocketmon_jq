@@ -172,3 +172,145 @@ http://<서버IP>/pocketmon.html 로 접속하세요.
 
 ![포켓몬 뒷모습](파오리_고화질2.gif)
 ---
+
+## Nginx 경로 마운트(alias) 설정
+
+
+`/etc/nginx/sites-available/default` 파일에 아래 블록을 추가 
+
+```bash
+location /pokemon/ {
+	alias /var/www/html/;
+	index pocketmon.html;
+	try_files $uri $uri/ =404; 
+}
+```
+- **location /pokemon/**  
+→ 브라우저에서 http://서버주소:포트/pokemon/ 로 접속할 때 동작.
+
+- **alias /var/www/html/**  
+→ 실제 서버 디렉토리(/var/www/html/)를 /pokemon/ 경로와 연결.
+
+- **index pocketmon.html**  
+→ /pokemon/ 으로 접속하면 기본적으로 pocketmon.html 파일을 보여줌.
+
+- **try_files $uri $uri/ =404**  
+→ 요청한 파일이 없으면 404 에러 반환 (보안 및 예외 처리).
+
+
+`sudo nginx -t`
+
+`sudo systemctl reload nginx`
+
+---
+## 메인페이지
+
+
+
+- **메인 페이지와 연결**
+    
+    메인페이지에서 사진 클릭 시 [http://localhost:81/pokemon/](http://localhost:81/pokemon/)로 이동
+    
+    메인 페이지 html 코드 [/backiscute.html]
+    
+    ```bash
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+      <meta charset="UTF-8">
+      <title>귀여운 포켓몬 뒷모습 모음</title>
+      <style>
+        body {
+          font-family: "Comic Sans MS", "Arial", sans-serif;
+          background-color: #fffafc;
+          margin: 0;
+          padding: 0;
+          text-align: center;
+        }
+    
+        header {
+          background-color: #ffb6c1;
+          padding: 20px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    
+        header h1 {
+          margin: 0;
+          color: #fff;
+          font-size: 2.5rem;
+          text-shadow: 1px 1px 2px #ff69b4;
+        }
+    
+        .gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 20px;
+          padding: 30px;
+          max-width: 1000px;
+          margin: auto;
+        }
+    
+        .gallery a {
+          display: block;
+          background-color: #ffe4f0;
+          border-radius: 20px;
+          padding: 15px;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          text-decoration: none;
+        }
+    
+        .gallery a:hover {
+          transform: scale(1.05);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+    
+        .gallery img {
+          width: 100%;
+          height: auto;
+          border-radius: 15px;
+        }
+    
+        footer {
+          margin-top: 30px;
+          padding: 15px;
+          background-color: #ffb6c1;
+          color: white;
+          font-size: 0.9rem;
+        }
+      </style>
+    </head>
+    <body>
+      <header>
+        <h1>✨ 귀여운 포켓몬 뒷모습 모음 ✨</h1>
+      </header>
+    
+      <section class="gallery">
+        <!-- 이미지와 연결할 HTML 경로만 바꾸면 됩니다 -->
+        <a href="http://localhost:81/pokemon/">
+          <img src="./IMG_0622.jpg" alt="오랑오랑과 플러피 뒷모습">
+        </a>
+        
+        <!-- 필요한 만큼 추가 -->
+      </section>
+    
+      <footer>
+        만든이: 이정이 , 홍혜원🐾
+      </footer>
+    </body>
+    </html>
+    ```
+    
+    ## 메인페이지 엔진엑스에 마운트
+    
+    [/etc/nginx/sites-available/default]
+    
+    ```bash
+    location /backiscute/ {
+            alias /var/www/html/;
+            index backiscute.html;
+            try_files $uri $uri/ =404;
+    }
+    ```
+
+    
+
