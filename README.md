@@ -7,7 +7,72 @@
 
 이 스크립트는 **포켓몬 API(PokeAPI)** 를 활용하여,
 배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒤모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성하는 기능
+```bash
+#!/bin/bash
 
+# 의존성 체크 curl과 jq가 깔려있는지 확인
+for bin in curl jq; do
+  command -v "$bin" >/dev/null 2>&1 || { echo "ERROR: $bin not found"; exit 1; }
+done
+
+# 포켓몬 배열(좋아하는 포켓몬 20마리)
+POKEMONS=("chansey" "meowth" "lucario" "shinx" "pikachu" "magikarp" "gyarados" "turtwig" "oshawott" "farfetchd" "Pichu" "Munchlax" "Pachirisu" "Metapod" "Slowpoke" "Exeggutor" "Dratini" "Mewtwo" "Mew" "Rowlet")
+
+
+# 배열 길이
+LEN=${#POKEMONS[@]}
+
+# 랜덤 인덱스 선택 
+IDX=$((RANDOM % LEN))
+POKEMON=${POKEMONS[$IDX]}
+
+# API 호출해서 해당 포켓몬의 gif URL 가져오기
+# API는 포켓몬에 관련된 데이터를 저장한 내용으로 jq로 파싱하여 뒷모습 gif파일을 가져오도록 만듦
+URL=$(curl -s https://pokeapi.co/api/v2/pokemon/$POKEMON \
+  | jq -r '.sprites.versions."generation-v"."black-white".animated.back_default')
+# species URL 이름을 추출할때 여러 언어들의 이름 정보들을 가진 api 추출
+SPECIES_URL=$(curl -s https://pokeapi.co/api/v2/pokemon/$POKEMON | jq -r '.species.url')
+
+# 여러 언어 이름 중 한국어 이름 추출
+KOR_NAME=$(curl -s $SPECIES_URL | jq -r '.names[] | select(.language.name=="ko") | .name')
+
+
+# HTML 파일 생성
+OUTFILE="/var/www/html/pocketmon.html"
+
+cat <<EOF > $OUTFILE
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>$POKEMON Sprite</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 40px; }
+    .card { max-width: 560px; border: 1px solid #ddd; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,.06); }
+    h1 { margin: 0 0 12px; font-size: 28px; }
+    .sub { color: #666; margin-bottom: 20px; }
+    .imgbox { display: flex; align-items: center; justify-content: center; min-height: 200px; background: #fafafa; border-radius: 10px; }
+    .note { margin-top: 16px; color: #999; font-size: 14px; }
+  </style>
+  </head>
+<body>
+  <div class="card">
+    <h1>$KOR_NAME</h1>
+    <div class="sub">뒷모습 귀엽지
+    <div class="imgbox">
+     <img src="$URL" alt="$POKEMON">
+    </div>
+    <div class="note">데이터 출처: <a href="$URL" target="_blank" rel="noreferrer">PokeAPI</a></div>
+  </div>
+</body>
+</html>
+EOF
+
+echo "웹페이지가 $OUTFILE 에 생성되었습니다."
+echo "http://<서버IP>/pocketmon.html 로 접속하세요."
+
+```
 ---
 
 ## 주요 기능 정리
@@ -96,5 +161,3 @@ http://<서버IP>/pocketmon.html 로 접속하세요.
 
 
 ---
-
-👉 제가 보기엔 학습용/재미용 스크립트로 딱 좋은데요! 원하시면 제가 **좀 더 확장해서** 랜덤 대신 **버튼 클릭 시 새 포켓몬 출력되게 하는 웹페이지 버전**도 정리해드릴까요?
