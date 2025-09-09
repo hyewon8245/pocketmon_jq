@@ -44,7 +44,7 @@ pocketmon/
 
 ## 🔍**프로젝트 과정**
 
-### nginx 설치
+#### nginx 설치
 
 ```bash
 sudo apt update
