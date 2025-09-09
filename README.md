@@ -22,7 +22,7 @@
 
 ---
 
-## **프로젝트 설명**
+## ✅ **프로젝트 개요**
 
 - **pocketmon-api**를 활용
 - **jq**를 활용해 json을 파싱하여 **포켓몬 gif**, **이름**확인
@@ -40,8 +40,9 @@ var/
 pocketmon/
     pocketmon.sh               # 랜덤 포켓몬 뽑아 HTML 생성하는 스크립트
 ```
+---
 
-## **프로젝트 과정**
+## 🔍**프로젝트 과정**
 
 ### nginx 설치
 
@@ -51,10 +52,11 @@ sudo apt install nginx
 ```
 ---
 
-### `/pocketmon/pocketmon.sh` 동작 개요
-
+## 🧑‍💻 `/pocketmon/pocketmon.sh` 생성
 **포켓몬 API(PokeAPI)** 를 활용하여,
-배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒤모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성하는 기능
+배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒷모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성
+
+### `/pocketmon/pocketmon.sh` 동작 설명
 <details>
 <summary>포켓몬 랜덤 HTML 생성 스크립트 보기</summary>
   
@@ -126,11 +128,6 @@ echo "http://<서버IP>/pocketmon.html 로 접속하세요."
 ```
 </details>
 
-
----
-
-### 주요 기능 정리
-
 <details>
 <summary>주요 기능 정리</summary>
 
@@ -193,7 +190,8 @@ EOF
 ---
 </details>
 
---- 
+---
+
 ### 실행 결과
 
 * 실행 후 `/var/www/html/pocketmon.html` 파일이 생성됨.
@@ -202,7 +200,7 @@ EOF
 
 --- 
 
-## 사용 예시
+### 사용 예시
 
 ```bash
 cd /pocketmon
@@ -220,7 +218,11 @@ http://<서버IP>/pocketmon.html 로 접속하세요.
 ![포켓몬 뒷모습](파오리_고화질2.gif)
 ---
 
-## Nginx 경로 마운트(alias) 설정
+## Nginx 설정 변경
+pocketmon.html같이 뜨지 않고 /pocketmon 이라는 웹페이지 경로로 뜨게 하기 위함
+
+
+### Nginx 경로 마운트(alias) 설정
 
 
 `/etc/nginx/sites-available/default` 파일에 아래 블록을 추가 
@@ -229,28 +231,7 @@ http://<서버IP>/pocketmon.html 로 접속하세요.
 location /pokemon/ {
 	alias /var/www/html/;
 	index pocketmon.html;
-	try_files $uri $uri/ =404; 
-}
-```
-- **location /pokemon/**  
-→ 브라우저에서 http://서버주소:포트/pokemon/ 로 접속할 때 동작.
-
-- **alias /var/www/html/**  
-→ 실제 서버 디렉토리(/var/www/html/)를 /pokemon/ 경로와 연결.
-
-- **index pocketmon.html**  
-→ /pokemon/ 으로 접속하면 기본적으로 pocketmon.html 파일을 보여줌.
-
-- **try_files $uri $uri/ =404**  
-→ 요청한 파일이 없으면 404 에러 반환 (보안 및 예외 처리).
-
-
-`sudo nginx -t`
-
-`sudo systemctl reload nginx`
-
----
-## 메인페이지
+	try_files성
 
 
 
