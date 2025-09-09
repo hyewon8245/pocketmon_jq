@@ -247,8 +247,10 @@ pocketmon.html같이 뜨지 않고 /pocketmon 이라는 웹페이지 경로로 �
 location /pokemon/ {
 	alias /var/www/html/;
 	index pocketmon.html;
-	try_files성
+	try_files $uri $uri/ =404;
 ```
+`sudo nginx -t`
+`sudo systemctl reload nginx`
     
 #### 메인 페이지 html 코드 [/backiscute.html]
 메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pokemon/)로 이동
