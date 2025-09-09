@@ -23,16 +23,21 @@
     </td>
   </tr>
 </table>
+
+---
+
+## nginx 설치
+
 ```bash
 sudo apt update
 sudo apt install nginx
 ```
 ---
 
-# `/pocketmon/pocketmon.sh` 동작 개요
+## `/pocketmon/pocketmon.sh` 동작 개요
 
-이 스크립트는 **포켓몬 API(PokeAPI)** 를 활용하여,
-배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒤모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성하는 기능을 합니다.
+**포켓몬 API(PokeAPI)** 를 활용하여,
+배열에 정의된 포켓몬 중 무작위로 하나를 선택해 **뒤모습 GIF와 한국어 이름**을 가져와 웹페이지(`/var/www/html/pocketmon.html`)를 자동 생성하는 기능
 <details>
 <summary>포켓몬 랜덤 HTML 생성 스크립트 보기</summary>
   
@@ -107,7 +112,7 @@ echo "http://<서버IP>/pocketmon.html 로 접속하세요."
 
 ---
 
-## 주요 기능 정리
+### 주요 기능 정리
 
 <details>
 <summary>주요 기능 정리</summary>
@@ -193,7 +198,7 @@ sh pocketmon.sh
 웹페이지가 /var/www/html/pocketmon.html 에 생성되었습니다.
 http://<서버IP>/pocketmon.html 로 접속하세요.
 ```
-브라우저에서 접속 → 랜덤 포켓몬의 한국어 이름과 뒤모습 GIF 확인 가능 🎉
+브라우저에서 접속 → 랜덤 포켓몬의 한국어 이름과 모습 GIF 확인 가능 🎉
 
 ![포켓몬 뒷모습](파오리_고화질2.gif)
 ---
