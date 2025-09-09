@@ -1,7 +1,14 @@
 # 프로젝트 개요
 - **pocketmon-api**를 활용
-- **jq**를 활용해 json을 파싱하여 **포켓몬 gif**, **이름**을 불러와서 **웹페이지 제작**
+- **jq**를 활용해 json을 파싱하여 **포켓몬 gif**, **이름**확인
+- **nginx**를 활용하여 **웹페이지 제작**
 
+---
+
+```bash
+sudo apt update
+sudo apt install nginx
+```
 ---
 
 # `/pocketmon/pocketmon.sh` 동작 개요
