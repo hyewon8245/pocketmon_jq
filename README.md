@@ -235,7 +235,7 @@ http://<서버IP>/pocketmon.html 로 접속하세요.
 ---
 
 ### Nginx 설정 변경
-pocketmon.html같이 뜨지 않고 /pocketmon 이라는 웹페이지 경로로 뜨게 하기 위함
+pocketmon.html같이 뜨지 않고 /pocketmon/ 이라는 웹페이지 경로로 뜨게 하기 위함
 
 
 #### Nginx 경로 마운트(alias) 설정
