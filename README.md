@@ -255,7 +255,7 @@ location /pokemon/ {
 #### 메인 페이지 html 코드 [/backiscute.html]
 메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pokemon/)로 이동
 
-    ```bash
+```bash
     <!DOCTYPE html>
     <html lang="ko">
     <head>
@@ -340,7 +340,7 @@ location /pokemon/ {
       </footer>
     </body>
     </html>
-    ```
+```
     
 #### 메인페이지 엔진엑스에 마운트
 
