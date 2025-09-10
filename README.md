@@ -254,7 +254,7 @@ location /pokemon/ {
 - nginx 설정 적용
     
 #### 메인 페이지 html 코드 [/backiscute.html]
-메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pokemon/)로 이동
+메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pocketmon/)로 이동
 
 ```bash
     <!DOCTYPE html>
@@ -329,7 +329,7 @@ location /pokemon/ {
     
       <section class="gallery">
         <!-- 이미지와 연결할 HTML 경로만 바꾸면 됩니다 -->
-        <a href="http://localhost:81/pokemon/">
+        <a href="http://localhost:port/pocketmon/">
           <img src="./IMG_0622.jpg" alt="오랑오랑과 플러피 뒷모습">
         </a>
         
