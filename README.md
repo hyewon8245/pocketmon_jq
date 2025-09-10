@@ -228,33 +228,19 @@ sh pocketmon.sh
 http://<서버IP>/pocketmon.html 로 접속하세요.
 ```
 
-포트포워드 변경 →  브라우저에서 접속 → 랜덤 포켓몬의 한국어 이름과 모습 GIF 확인 가능 🎉
+---
+
+포트포워드 변경 →  브라우저에서 접속 → 랜덤 포켓몬의 한국이름과 모습 GIF 확인🎉
 
 ![포켓몬 뒷모습](파오리_고화질2.gif)
 
 ---
 
-### Nginx 설정 변경
-pocketmon.html같이 뜨지 않고 /pocketmon/ 이라는 웹페이지 경로로 뜨게 하기 위함
-
-
-#### Nginx 경로 마운트(alias) 설정
-
-
-`/etc/nginx/sites-available/default` 파일에 아래 블록을 추가 
-
-```bash
-location /pokemon/ {
-	alias /var/www/html/;
-	index pocketmon.html;
-	try_files $uri $uri/ =404;
-```
-`sudo nginx -t`
-`sudo systemctl reload nginx`
-- nginx 설정 적용
     
-#### 메인 페이지 html 코드 [/backiscute.html]
+### 메인 페이지 html 코드 [/backiscute.html]
 메인페이지에서 사진 클릭 시 [http://localhost:port/pokemon/](http://localhost:port/pocketmon/)로 이동
+<details>
+<summary> 🔍 메인페이지 html 코드</summary>
 
 ```bash
     <!DOCTYPE html>
@@ -342,8 +328,28 @@ location /pokemon/ {
     </body>
     </html>
 ```
-    
-#### 메인페이지 엔진엑스에 마운트
+
+</details>
+
+---
+
+### Nginx 설정 변경
+pocketmon.html같이 뜨지 않고 /pocketmon/ 이라는 웹페이지 경로로 뜨게 하기 위함
+
+
+#### Pokemon page Nginx 경로 마운트(alias) 설정
+
+
+`/etc/nginx/sites-available/default` 파일에 아래 블록을 추가 
+
+```bash
+location /pokemon/ {
+	alias /var/www/html/;
+	index pocketmon.html;
+	try_files $uri $uri/ =404;
+```
+ 
+#### 메인페이지 Nginx에 마운트
 
 `/etc/nginx/sites-available/default`    
 
@@ -355,9 +361,13 @@ location /pokemon/ {
     }
 ```
 
-`sudo nginx -t`
-`sudo systemctl reload nginx`
-- nginx 설정 적용
+### nginx 설정 적용
+
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+
+```
 
 ![모부기](모부기.gif)
     
