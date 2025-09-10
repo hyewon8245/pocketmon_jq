@@ -345,14 +345,15 @@ location /pokemon/ {
 #### 메인페이지 엔진엑스에 마운트
 
 `/etc/nginx/sites-available/default`    
-    
-	```bash
+
+```bash
     location /backiscute/ {
             alias /var/www/html/;
             index backiscute.html;
             try_files $uri $uri/ =404;
     }
-    ```
+```
+
 ![모부기](모부기.gif)
     
 
