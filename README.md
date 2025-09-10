@@ -370,5 +370,14 @@ sudo systemctl reload nginx
 ```
 
 ![모부기](모부기.gif)
+
+---
+## 트러블슈팅
+`경로설정을 잘못한 문제`
+```bash
+./back_img.jpg
+# jpg의 경로 설정을 잘못 잡아서 메인페이지에 사진이 뜨지 않는 문제
+
+```
     
 
